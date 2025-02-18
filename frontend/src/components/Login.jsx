@@ -3,8 +3,12 @@ import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useState } from 'react';
 function Login() {
+    const [login,setLogin] = useState(false);
+    const toggleLogin = () =>{
+      setLogin(!login)
+    }
     const theme = createTheme({
         palette: {
             primary: {
@@ -37,22 +41,31 @@ function Login() {
         noValidate
         autoComplete="off"
         >
-        <TextField id="outlined-basic" label="username" variant="outlined" />
+        {login?<></>:<TextField id="outlined-basic" label="username" variant="outlined" />}
         <br />
         <TextField id="outlined-basic" label="email" variant="outlined" />
         <br />
-        <TextField id="outlined-basic" label="mobile" variant="outlined" />
+        {login?<></>:<TextField id="outlined-basic" label="mobile" variant="outlined" />}
         <br />
         <TextField id="outlined-basic" label="password" variant="outlined" />
         <br />
-        <Button variant='contained'>Register</Button>
+        {
+          login?<Button variant='contained'>Login</Button>:<Button variant='contained'>Register</Button>
+        }
         </Box>
         <p>Already have an Account?
             <Typography 
             variant="h7" 
             gutterBottom 
             color='blue'
-            > Login
+            onClick={toggleLogin}
+            sx={{
+              cursor:"pointer"
+            }}
+            > 
+            {
+              login?<>Register</>:<>Login   </>
+            }
             </Typography></p>
       </Box>
     </ThemeProvider>
