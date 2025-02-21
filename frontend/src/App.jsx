@@ -1,9 +1,11 @@
 import React from 'react'
-import Login from './components/Login'
+import BasicMenu from './components/BasicMenu'
+import PrimarySearchAppBar from './components/PrimarySearchAppBar'
 function App() {
   return (
     <div>
-      <Login></Login>
+      <PrimarySearchAppBar></PrimarySearchAppBar>
+      <BasicMenu></BasicMenu>
     </div>
   )
 }
