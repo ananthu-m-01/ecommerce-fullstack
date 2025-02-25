@@ -33,6 +33,10 @@ function Login() {
           '&:hover': {
             bgcolor: 'primary.dark',
           },
+          display:"flex",
+          alignItems:"center",
+          justifyContent:"center",
+          mx: 'auto',
         }}
       >
         <Box
@@ -52,8 +56,7 @@ function Login() {
         {
           login?<Button variant='contained'>Login</Button>:<Button variant='contained'>Register</Button>
         }
-        </Box>
-        <p>Already have an Account?
+           <p>Already have an Account?
             <Typography 
             variant="h7" 
             gutterBottom 
@@ -67,6 +70,7 @@ function Login() {
               login?<>Register</>:<>Login   </>
             }
             </Typography></p>
+        </Box>
       </Box>
     </ThemeProvider>
     </div>
