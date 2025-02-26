@@ -6,7 +6,7 @@ function Home() {
       <div>
         <h1>Welcome</h1>
         <p>This page will contain Home Page details</p>
-        <h3><Link to='/login'>Click Here</Link>to join us!</h3>
+        <h3><Link to='/register'>Click Here</Link>to join us!</h3>
       </div>
     </div>
   )
