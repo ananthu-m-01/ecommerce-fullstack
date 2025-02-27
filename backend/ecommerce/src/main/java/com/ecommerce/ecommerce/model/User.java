@@ -1,9 +1,6 @@
 package com.ecommerce.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +9,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    private String emailId;
+
+    @Column(nullable = false, unique = true)
     private String userName;
+
+    @Column(nullable = false, unique = true)
+    private String emailId;
+
+    @Column(nullable = false, unique = true)
     private String mobileNumber;
+
+    @Column(nullable = false)
     private String password;
 }

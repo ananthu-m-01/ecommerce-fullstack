@@ -1,8 +1,8 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 function Register() {
   const [registerData, setRegisterData] = useState({
     userName: "",
@@ -10,17 +10,33 @@ function Register() {
     mobileNumber: "",
     password: "",
   });
-
   const handleChange = (e) => {
     setRegisterData({
       ...registerData,
       [e.target.name]: e.target.value,
     });
   };
-
-  const handleRegister = (e) => {
+  
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("User input Data:", registerData);
+    if (!registerData.userName.trim() || 
+        !registerData.emailId.trim() ||
+        !registerData.mobileNumber.trim()||
+        !registerData.password.trim()
+      ){
+      alert("please fill the required field");
+    }
+    try {
+      const response = await axios.post("http://localhost:8080/api/users/register", registerData, {
+        headers: { "Content-Type": "application/json" },
+      });
+  
+      console.log("User registered successfully:", response.data);
+      alert("User registered successfully!");
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Registration failed!");
+    }
   };
   
   const theme = createTheme({
@@ -65,6 +81,7 @@ function Register() {
               variant="outlined"
               value={registerData.userName}
               onChange={handleChange}
+              required
             />
             <TextField
             id="email-input"
@@ -73,6 +90,7 @@ function Register() {
             variant="outlined"
             value={registerData.emailId}
             onChange={handleChange}
+            required
           />
             <TextField
               id="mobile-input"
@@ -81,6 +99,7 @@ function Register() {
               variant="outlined"
               value={registerData.mobileNumber}
               onChange={handleChange}
+              required
             />
           <TextField
             id="password-input"
@@ -90,6 +109,7 @@ function Register() {
             variant="outlined"
             value={registerData.password}
             onChange={handleChange}
+            required
           />
           <Button type="submit" variant="contained">
             Register
